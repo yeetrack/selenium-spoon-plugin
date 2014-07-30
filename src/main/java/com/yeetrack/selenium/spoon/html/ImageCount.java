@@ -1,6 +1,8 @@
 package com.yeetrack.selenium.spoon.html;
 
 import com.yeetrack.selenium.spoon.Image.CompratorByLastModified;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -13,7 +15,8 @@ import java.util.List;
  */
 public class ImageCount
 {
-    private static String IMAGEPATH = "target/screenshots";
+    private static Logger logger = LoggerFactory.getLogger(ImageCount.class);
+    private static String IMAGEPATH = "target"+File.separator+"screenshots";
     private static List<BrowserResultEntity> browserResultEntityList;
 
 
@@ -22,8 +25,13 @@ public class ImageCount
     {
         List<BrowserResultEntity> browserResultList = new ArrayList<BrowserResultEntity>();
 
+
+        logger.info("遍历图片文件夹");
+        logger.info("当前路径"+System.getProperty("user.dir"));
         File file = new File(IMAGEPATH);
+        logger.info(file.getAbsolutePath());
         File[] browserDirs = file.listFiles();
+        logger.info("+++"+browserDirs.length);
 
         for(File indexBroswerFile : browserDirs)
         {
@@ -51,7 +59,12 @@ public class ImageCount
                     Arrays.sort(shots, new CompratorByLastModified());
                     List<String> shotFileList = new ArrayList<String>();
                     for (File shotFile : shots)
-                        shotFileList.add(shotFile.getAbsolutePath());
+                    {
+                        //只存相对路径，target/screenshots开始
+                        String absPath = shotFile.getAbsolutePath();
+                        String path = absPath.substring(absPath.indexOf(IMAGEPATH));
+                        shotFileList.add(path);
+                    }
 
                     caseEntity.setScreenShotsFileList(shotFileList);
                     classEntity.getCaseList().add(caseEntity);

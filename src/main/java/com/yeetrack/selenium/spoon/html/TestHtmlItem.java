@@ -32,8 +32,8 @@ public class TestHtmlItem
         {
             pathHtmlStringBuffer.append(
                     "<li class=\"span2\">\n" +
-                            "                            <a href=\""+pathIndex+"\" class=\"thumbnail\">\n" +
-                            "                                <img src=\""+pathIndex+"\" title=\""+pathIndex+"\">\n" +
+                            "                            <a href=\"../../../"+pathIndex+"\" class=\"thumbnail\">\n" +
+                            "                                <img src=\"../../../"+pathIndex+"\" title=\""+pathIndex+"\">\n" +
                             "                            </a>\n" +
                             "                        </li>"
             );
