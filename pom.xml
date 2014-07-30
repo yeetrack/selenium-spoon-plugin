@@ -48,7 +48,7 @@
       <developerConnection>
           scm:git:git@github.com:yeetrack/selenium-spoon-plugin.git
       </developerConnection>
-      <url>https://github.com/yeetrack/selenium-spoon-plugin</url>
+      <url>git:git@github.com:yeetrack/selenium-spoon-plugin.git</url>
   </scm>
   <dependencies>
     <dependency>
@@ -97,6 +97,20 @@
                     <encoding>UTF-8</encoding>
                     <skipErrorNoDescriptorsFound>true</skipErrorNoDescriptorsFound>
                 </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-gpg-plugin</artifactId>
+                <version>1.4</version>
+                <executions>
+                    <execution>
+                        <id>sign-artifacts</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>sign</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>
